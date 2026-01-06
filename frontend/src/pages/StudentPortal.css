@@ -1,0 +1,143 @@
+.student-portal {
+    min-height: 100vh;
+    padding: var(--space-2xl) 0;
+    background: var(--color-bg-primary);
+}
+
+.portal-header {
+    margin-bottom: var(--space-2xl);
+}
+
+.portal-header h1 {
+    margin-bottom: var(--space-md);
+}
+
+.student-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+}
+
+.student-id {
+    color: var(--color-text-secondary);
+    font-family: monospace;
+    font-size: var(--font-size-lg);
+}
+
+.connection-status {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-surface);
+    border-radius: var(--radius-full);
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.status-dot.connected {
+    background: var(--color-success);
+}
+
+.status-dot.disconnected {
+    background: var(--color-text-tertiary);
+}
+
+.status-dot.error {
+    background: var(--color-danger);
+}
+
+.portal-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-xl);
+}
+
+.video-section {
+    position: relative;
+}
+
+.video-feed {
+    width: 100%;
+    border-radius: var(--radius-md);
+    background: var(--color-bg-tertiary);
+}
+
+.video-controls {
+    margin-top: var(--space-lg);
+    display: flex;
+    justify-content: center;
+}
+
+.analysis-panel h3 {
+    margin-bottom: var(--space-lg);
+}
+
+.status-display {
+    margin-bottom: var(--space-xl);
+}
+
+.status-indicator {
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius-md);
+    text-align: center;
+    font-weight: 700;
+    font-size: var(--font-size-xl);
+    color: white;
+}
+
+.metrics-grid {
+    display: grid;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.metric {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-md);
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+}
+
+.metric-label {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.metric-value {
+    color: var(--color-text-primary);
+    font-weight: 600;
+}
+
+.alert {
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+}
+
+.alert-good {
+    background: var(--color-success-light);
+    color: var(--color-success);
+}
+
+.alert-warning {
+    background: var(--color-warning-light);
+    color: var(--color-warning);
+}
+
+.alert-alert {
+    background: var(--color-danger-light);
+    color: var(--color-danger);
+}
+
+@media (max-width: 768px) {
+    .portal-content {
+        grid-template-columns: 1fr;
+    }
+}
