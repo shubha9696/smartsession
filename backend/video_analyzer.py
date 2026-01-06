@@ -1,6 +1,10 @@
 import cv2
 import numpy as np
-import mediapipe as mp
+try:
+    import mediapipe as mp
+    MEDIAPIPE_AVAILABLE = True
+except ImportError:
+    MEDIAPIPE_AVAILABLE = False
 from collections import deque
 from datetime import datetime, timedelta
 from typing import Dict, List, Tuple, Optional
@@ -11,18 +15,28 @@ logger = logging.getLogger(__name__)
 class VideoAnalyzer:
     
     def __init__(self):
-        self.mp_face_mesh = mp.solutions.face_mesh
-        self.face_mesh = self.mp_face_mesh.FaceMesh(
-            max_num_faces=2,
-            refine_landmarks=True,
-            min_detection_confidence=0.5,
-            min_tracking_confidence=0.5
-        )
-        
-        self.mp_face_detection = mp.solutions.face_detection
-        self.face_detection = self.mp_face_detection.FaceDetection(
-            min_detection_confidence=0.7
-        )
+        if not MEDIAPIPE_AVAILABLE:
+            logger.warning("MediaPipe not available - face analysis disabled")
+            self.face_mesh = None
+            self.face_detection = None
+        else:
+            try:
+                self.mp_face_mesh = mp.solutions.face_mesh
+                self.face_mesh = self.mp_face_mesh.FaceMesh(
+                    max_num_faces=2,
+                    refine_landmarks=True,
+                    min_detection_confidence=0.5,
+                    min_tracking_confidence=0.5
+                )
+                
+                self.mp_face_detection = mp.solutions.face_detection
+                self.face_detection = self.mp_face_detection.FaceDetection(
+                    min_detection_confidence=0.7
+                )
+            except Exception as e:
+                logger.error(f"Failed to initialize MediaPipe: {e}")
+                self.face_mesh = None
+                self.face_detection = None
         
         self.student_states: Dict[str, Dict] = {}
         self.gaze_history: Dict[str, deque] = {}

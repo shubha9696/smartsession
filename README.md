@@ -2,6 +2,17 @@
 
 A full-stack application for real-time student proctoring and engagement tracking using computer vision.
 
+## 📸 Screenshots
+
+### Homepage - Portal Selection
+![SmartSession Homepage](screenshots/homepage.png)
+
+### Student Portal Features
+![Portal Features](screenshots/portal_features.png)
+
+### Teacher Dashboard - Real-time Monitoring
+![Teacher Dashboard](screenshots/teacher_dashboard.png)
+
 ## Architecture Overview
 
 ### Technology Stack
